@@ -1,0 +1,21 @@
+{
+    "name": "ollieslab/multitenancy",
+    "description": "",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Ollie Read",
+            "email": "labs@ollieread.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "classmap": [
+
+        ],
+        "psr-4": {
+            "Ollieslab\\Multitenancy": "src/"
+        }
+    }
+}
