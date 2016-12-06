@@ -15,7 +15,7 @@
 
         ],
         "psr-4": {
-            "Ollieslab\\Multitenancy": "src/"
+            "Ollieslab\\Multitenancy\\": "src/"
         }
     }
 }
