@@ -1,6 +1,6 @@
 # Laravel Multitenancy #
 
-[![Latest Stable Version](https://poser.pugx.org/ollieslab/multitenancy/v/stable.png)](https://packagist.org/packages/ollieslab/multitenancy) [![Total Downloads](https://poser.pugx.org/ollieslab/multitenancy/downloads.png)](https://packagist.org/packages/ollieslab/multitenancy) [![Latest Unstable Version](https://poser.pugx.org/ollieslab/multitenancy/v/unstable.png)](https://packagist.org/packages/ollieslab/multitenancy) [![License](https://poser.pugx.org/ollieslab/multitenancy/license.png)](https://packagist.org/packages/ollieslab/multitenancy)
+[![Latest Stable Version](https://poser.pugx.org/ollieslab/laravel-multitenancy/v/stable.png)](https://packagist.org/packages/ollieslab/laravel-multitenancy) [![Total Downloads](https://poser.pugx.org/ollieslab/laravel-multitenancy/downloads.png)](https://packagist.org/packages/ollieslab/laravel-multitenancy) [![Latest Unstable Version](https://poser.pugx.org/ollieslab/laravel-multitenancy/v/unstable.png)](https://packagist.org/packages/ollieslab/laravel-multitenancy) [![License](https://poser.pugx.org/ollieslab/laravel-multitenancy/license.png)](https://packagist.org/packages/ollieslab/laravel-multitenancy)
 
 
 - **Laravel**: 5.3
@@ -21,11 +21,72 @@ in as a user, a master account and an admin, without conflicts!
 
 ## Installation ##
 
+Firstly you want to include this package in your composer.json file.
 
+    "require": {
+    		"ollieslab/laravel-multitenancy": "dev-master"
+    }
+    
+Now you'll want to update or install via composer.
+
+    composer update
+
+Next you open up app/config/app.php and add the following.
+
+    Ollieslab\Multitenancy\ServiceProvider::class,
+    
+Then the facade.
+
+    'Multitenancy' => Ollieslab\Multitenancy\Facades\Multitenancy::class,
+
+Finally, run the following command to publish the config.
+
+    php artisan vendor:publish --provider=Ollieslab\Multitenancy\ServiceProvider
+    
+## Configuration ##
+
+The configuration is quite simple.
+
+ - `type` The type of multitenancy, options are `domain`, `subdomain` and `directory`.
+ - `domain` The domain to use for the `subdomain` type.
+ - `provider` The provider, options are `database` or `eloquent`.
+ - `model` The model to be used when using the `eloquent` provider.
+ - `table` The table to use when using the `database` provider.
+ - `identifiers` The identifiers to be used when using the `database` provider.
+
+## Extending ##
+
+Adding a new provider is as simple as adding a new provider to the Laravel Auth library.
+
+The new provider must implement the interface `Ollieslab\Multitenancy\Contracts\Provider`.
+
+In the register method of a service provider, extend the package like so:
+
+    $this->app->make('multitenancy')->provider('custom', function ($app, $config) {
+        return new CustomProvider();
+    });
 
 ## Usage ##
 
+Once you're all setup, you'll want to define the routes that should only be available to tenants.
 
+##### Routes #####
+
+    Multitenancy::routes(function (Router $router) {
+        // Your routes here, exactly like you would inside a normal group
+    }
+
+##### Accessing Current Tenant ####
+
+    Multitenancy::get()
+
+##### Invalid Tenant #####
+
+An invalid tenancy identifier, such as a domain or subdomain not registered, an `Ollieslab\Multitenancy\Exceptions\InvalidTenantException` will be thrown.
+
+##### Auth #####
+
+The auth portion of this package is coming soon.
 
 There we go, done! Enjoy yourselves.
 
