@@ -29,10 +29,20 @@ return [
 
     'model'         => Ollieslab\Multitenancy\Models\Tenant::class,
 
-    // These are only used for driver database
-    'table'         => '', // Only used for driver database
+    /*
+     * Everything below here is only used for the database provider
+     * ============================================================
+     */
+
+    // The database table to use
+    'table'         => 'tenants', 
+
+    // The database columns to use for identifiers. This should be 2 values for the domain type, and 1 for the others
     'identifiers'   => [
         'domain', 'slug'
-    ]
+    ],
+
+    // The database column that represents the foreign key for the tenant
+    'foreign_key'   => 'tenant_id'
 
 ];
