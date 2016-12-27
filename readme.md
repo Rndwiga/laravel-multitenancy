@@ -74,7 +74,7 @@ Once you're all setup, you'll want to define the routes that should only be avai
 
     Multitenancy::routes(function (Router $router) {
         // Your routes here, exactly like you would inside a normal group
-    }
+    });
 
 ##### Accessing Current Tenant ####
 
@@ -83,6 +83,10 @@ Once you're all setup, you'll want to define the routes that should only be avai
 ##### Invalid Tenant #####
 
 An invalid tenancy identifier, such as a domain or subdomain not registered, an `Ollieslab\Multitenancy\Exceptions\InvalidTenantException` will be thrown.
+
+##### URL Generator #####
+
+
 
 ##### Auth #####
 
