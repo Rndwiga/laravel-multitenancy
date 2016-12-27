@@ -2,7 +2,6 @@
 namespace Ollieslab\Multitenancy\Driver;
 
 use Illuminate\Support\Facades\Route;
-use Ollieslab\Multitenancy\Contracts\Provider;
 use Ollieslab\Multitenancy\Middleware\LoadTenant;
 
 /**

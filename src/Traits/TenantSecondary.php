@@ -7,7 +7,7 @@ namespace Ollieslab\Multitenancy\Traits;
  * @package Ollieslab\Multitenancy\Traits
  */
 
-trait DomainTenant
+trait TenantSecondary
 {
 
     public function getSecondaryIdentifierName()

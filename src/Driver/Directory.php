@@ -1,7 +1,6 @@
 <?php
 namespace Ollieslab\Multitenancy\Driver;
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Ollieslab\Multitenancy\Middleware\LoadTenant;
 
